@@ -566,3 +566,78 @@ return (
 
 export default List
 ```
+
+### Callback
+Calling/Executing a function from child to parent component
+
+_ListItem.jsx_
+```
+import React from "react";
+import List from "./List";
+
+function ListItem() {
+
+const arrdata = [
+    {
+        name: 'Milan',
+        desc: 'hi milan',
+        isActive: true
+    },
+    {
+        name: 'Milosh',
+        desc: 'hi milosh',
+        isActive: false
+    }
+]
+
+return (
+    <>
+    {
+        arrdata.map(function(item){
+            return(
+                <List onAction={()=>{
+                    console.log("Parent Component Clicked")
+                }} key={item.name} name={item.name} desc={item.desc} isActive={item.isActive}/>
+            )
+        })
+    }
+    </>
+)
+}
+
+export default ListItem
+```
+Here we pass a function with the name `onAction` (_we can give any name_) to the child component list and it is accesed with the props on the child component
+
+_List.jsx_
+```
+import React from "react";
+
+function List(props) {
+
+// Props destructuring
+const{
+    name,
+    desc,
+    isActive,
+    onAction
+} = props
+
+return (
+    <div>
+        <h1>{name}</h1>
+        <p>{desc}</p>
+        <span onClick={()=>{
+            onAction() //callback function
+        }} style={isActive ? {background: 'green', color:'white'} : {background: 'red', color:'white'}}>{isActive ? 'Active' : 'Not Active'}</span>
+    </div>
+)
+}
+
+export default List
+```
+
+## Child props
+_Skipped_
+
+## State
