@@ -230,7 +230,7 @@ function App() {
 
 Here the `map()` creates a new array and returns it
 
-[Link to map](https://www.freecodecamp.org/news/javascript-map-method/)
+[Link: map()](https://www.freecodecamp.org/news/javascript-map-method/)
 
 Since `map()` creates an array and when we prints it, it will show an error/warning `Warning: Each child in a list should have a unique "key" prop`.
 So to remove the error we need to define the `key` attribute.
@@ -397,7 +397,7 @@ _**Note:**_
 - `props` stands for properties and is used to pass data between the components
 - Props are passed to components via HTML attributes
 
-[props - see example](https://www.w3schools.com/react/react_props.asp)
+[Link: props - see example](https://www.w3schools.com/react/react_props.asp)
 
 Eg.
 
@@ -415,7 +415,7 @@ const obj = {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <List content = {obj}/>
+    <List title = {obj.title} desc = {obj.content} isActive = {obj.isActive}/>
   </StrictMode>,
 )
 ```
@@ -425,11 +425,11 @@ _List.jsx_
 import React from "react";
 
 function List(props) {
-const style = props.content.isActive ? {background: 'green'} : {background: 'red'}
+const style = props.isActive ? {background: 'green'} : {background: 'red'}
 return (
     <div>
-        <h1>{props.content.title}</h1>
-        <p>{props.content.content}</p>
+        <h1>{props.title}</h1>
+        <p>{props.content}</p>
         <span style={style}>ok</span>
     </div>
 )
@@ -456,14 +456,15 @@ createRoot(document.getElementById('root')).render(
     <List title = {obj.title} desc = {obj.content} isActive = {obj.isActive}/>
   </StrictMode>,
 )
-
 ```
+
 _List.jsx_
 ```
 import React from "react";
 
 function List(props) {
 
+// Props destructuring
 const{
     title,
     desc,
@@ -482,6 +483,86 @@ return (
 export default List
 ```
 
+[Link: Destructuring in JS](https://www.w3schools.com/react/react_props.asp)
+
+### Props - Array of items (multiple values in object)
+
+Pass multiple value into the component
+
+###### ! Written the above code in seperate files
+
+_main.jsx_
+```
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import ListItem from './ListItem'
+
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <ListItem/>
+  </StrictMode>,
+)
 ```
 
+_ListItem.jsx_
+```
+import React from "react";
+import List from "./List";
+
+function ListItem() {
+
+const arrdata = [
+    {
+        name: 'Milan',
+        desc: 'hi milan',
+        isActive: true
+    },
+    {
+        name: 'Milosh',
+        desc: 'hi milosh',
+        isActive: false
+    }
+]
+
+return (
+    <>
+    {
+        arrdata.map(function(item){
+            return(
+                <List key={item.name} name={item.name} desc={item.desc} isActive={item.isActive}/>
+            )
+        })
+    }
+    </>
+)
+}
+
+export default ListItem
+```
+Here we use map() to handle array of objects/items then pass value into the list component
+
+_List.jsx_
+```
+import React from "react";
+
+function List(props) {
+
+// Props destructuring
+const{
+    name,
+    desc,
+    isActive
+} = props
+
+return (
+    <div>
+        <h1>{name}</h1>
+        <p>{desc}</p>
+        <span style={isActive ? {background: 'green'} : {background: 'red'}}>ok</span>
+    </div>
+)
+}
+
+export default List
 ```
