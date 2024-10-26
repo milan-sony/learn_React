@@ -67,7 +67,7 @@ React.createElement(
 )
 ```
 
-##### nested child
+#### nested child
 ```
 const a = <div id="test">
             <h1>hello</h1>
@@ -394,3 +394,94 @@ _**Note:**_
 
 
 ## Props
+- `props` stands for properties and is used to pass data between the components
+- Props are passed to components via HTML attributes
+
+[props - see example](https://www.w3schools.com/react/react_props.asp)
+
+Eg.
+
+_main.jsx_
+```
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import List from './List'
+
+const obj = {
+  title: "Milan",
+  content: "Hi milan",
+  isActive: true
+}
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <List content = {obj}/>
+  </StrictMode>,
+)
+```
+
+_List.jsx_
+```
+import React from "react";
+
+function List(props) {
+const style = props.content.isActive ? {background: 'green'} : {background: 'red'}
+return (
+    <div>
+        <h1>{props.content.title}</h1>
+        <p>{props.content.content}</p>
+        <span style={style}>ok</span>
+    </div>
+)
+}
+
+export default List
+```
+
+### Destructuring props
+_main.jsx_
+```
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import List from './List'
+
+const obj = {
+  title: "Milan",
+  content: "Hi milan",
+  isActive: true
+}
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <List title = {obj.title} desc = {obj.content} isActive = {obj.isActive}/>
+  </StrictMode>,
+)
+
+```
+_List.jsx_
+```
+import React from "react";
+
+function List(props) {
+
+const{
+    title,
+    desc,
+    isActive
+} = props
+
+return (
+    <div>
+        <h1>{title}</h1>
+        <p>{desc}</p>
+        <span style={isActive? {background:'green'} : {background:'red'}}>ok</span>
+    </div>
+)
+}
+
+export default List
+```
+
+```
+
+```
