@@ -640,4 +640,29 @@ export default List
 ## Child props
 _Skipped_
 
-## State
+## Hooks
+### State
+`state` in react is an object that holds data or information about the component
+
+`useState` is a react hook that allows to add state to functional component. It returs an array with 2 values the `current state` and the `function to update it`
+```
+import React, {useState} from 'react'
+
+function Counter() {
+
+	const [count, setCount] = useState(0) //Here useState(0) means initially set's the value of count as 0 (like const count = 0;)
+
+	const addCount = ()=>{
+		setCount(count + 1)
+	}
+
+	return (
+		<div>
+			<h1>Counter: {count}</h1>
+			<button onClick={addCount}>Count ++</button>
+		</div>
+	)
+}
+
+export default Counter
+```
