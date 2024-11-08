@@ -645,6 +645,8 @@ _Skipped_
 `state` in react is an object that holds data or information about the component
 
 `useState` is a react hook that allows to add state to functional component. It returs an array with 2 values the `current state` and the `function to update it`
+
+_Counter.jsx_
 ```
 import React, {useState} from 'react'
 
@@ -666,3 +668,114 @@ function Counter() {
 
 export default Counter
 ```
+#### Passing value to component with state
+_Counter.jsx
+```
+import React, {useState} from 'react'
+import Count from './components/Count'
+
+function Counter() {
+
+	const [count, setCount] = useState(0)
+
+	const addCount = ()=>{
+		setCount(count + 1)
+	}
+
+	return (
+		<div>
+			<Count count = {count}/>
+			<button onClick={addCount}>Count ++</button>
+		</div>
+	)
+}
+
+export default Counter
+```
+
+_Count.jsx_
+```
+import React from 'react'
+
+function Count(props) {
+  return (
+    <div>
+      <h1>Counter: {props.count}</h1>
+    </div>
+  )
+}
+
+export default Count
+```
+
+## Spred operator
+[Spread operator reference link 1](https://www.w3schools.com/react/react_es6_spread.asp)
+
+[Spread operator reference link 2](https://www.geeksforgeeks.org/javascript-spread-operator/)
+
+
+_Counter.jsx_
+```
+import React, {useState} from 'react'
+import Count from './components/Count'
+
+function Counter() {
+
+	const [count, setCount] = useState(0)
+
+	const addCount = ()=>{
+		setCount(count + 1)
+	}
+
+	let counter2={
+		title: "Counter Two",
+		count: count
+	}
+
+	return (
+		<div>
+			<Count title={"Counter One"} count={count}/>
+			<Count {...counter2}/>
+			<button onClick={addCount}>Count ++</button>
+		</div>
+	)
+}
+
+export default Counter
+```
+
+_Count.jsx_
+```
+import React from 'react'
+
+function Count(props) {
+  return (
+    <div>
+      <h1>{props.title}: {props.count}</h1>
+    </div>
+  )
+}
+
+export default Count
+```
+
+## LifeCycle methods
+- `mounting` - case when new component load
+- `updating` - case when a value in the component change
+- `unmounting` - case when a component changes/removes
+
+### useEffect()
+[useEffect reference link](https://react.dev/reference/react/useEffect)
+
+[useEffect yt vdo](https://www.youtube.com/watch?v=0ZJgIjIuY7U)
+
+The `effect` hooks lets you perform side effects in function component
+
+`side effect` are action which performend with the outside world.
+
+We use side effect to perform when we need to perform any other action outside the component like adding preloader, fetching data, updating the dom etc
+
+## Routing
+[Router reference link](https://www.w3schools.com/react/react_router.asp)
+
+[Router off.doc](https://reactrouter.com/en/main)
