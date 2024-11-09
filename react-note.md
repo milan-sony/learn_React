@@ -779,3 +779,9 @@ We use side effect to perform when we need to perform any other action outside t
 [Router reference link](https://www.w3schools.com/react/react_router.asp)
 
 [Router off.doc](https://reactrouter.com/en/main)
+
+## Form handling (React forms)
+
+[React form reference link](https://www.w3schools.com/react/react_forms.asp)
+
+[React form best practice - controlled components(useState) & uncontrolled components (useRef)](https://daily.dev/blog/form-on-react-best-practices)
