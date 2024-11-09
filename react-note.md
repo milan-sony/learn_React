@@ -785,3 +785,44 @@ We use side effect to perform when we need to perform any other action outside t
 [React form reference link](https://www.w3schools.com/react/react_forms.asp)
 
 [React form best practice - controlled components(useState) & uncontrolled components (useRef)](https://daily.dev/blog/form-on-react-best-practices)
+
+Eg:
+```
+import React, { useState } from 'react'
+
+function Form() {
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: ''
+	})
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+		console.log("Input value:", e.target.value)
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log("Form Data:", formData)
+	}
+
+	return (
+		<div>
+			<form onSubmit={handleSubmit}>
+				<p>Name</p>
+				<input type="text" name='name' value={formData.name} onChange={handleChange} />
+				<p>Email</p>
+				<input type="text" name='email' value={formData.email} onChange={handleChange} />
+				<p>Password</p>
+				<input type="text" name='password' value={formData.password} onChange={handleChange} />
+				<br />
+				<br />
+				<input type="submit" value="SUBMIT" />
+			</form>
+		</div>
+	)
+}
+
+export default Form
+```
