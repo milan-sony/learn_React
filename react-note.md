@@ -784,7 +784,11 @@ We use side effect to perform when we need to perform any other action outside t
 
 [React form reference link](https://www.w3schools.com/react/react_forms.asp)
 
+[React form reference link2](https://www.freecodecamp.org/news/how-to-build-forms-in-react/)
+
+
 [React form best practice - controlled components(useState) & uncontrolled components (useRef)](https://daily.dev/blog/form-on-react-best-practices)
+
 
 Eg:
 ```
